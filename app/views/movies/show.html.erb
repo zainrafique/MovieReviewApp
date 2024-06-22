@@ -1,0 +1,29 @@
+<h1><%= @movie.title %></h1>
+<p><%= @movie.description %></p>
+<p>Year: <%= @movie.year %></p>
+<p>Director: <%= @movie.director %></p>
+
+<h2>Locations</h2>
+<ul>
+  <% @movie.locations.each do |location| %>
+    <li><%= location.name %>, <%= location.country %></li>
+  <% end %>
+</ul>
+
+<h2>Actors</h2>
+<ul>
+  <% @movie.actors.each do |actor| %>
+    <li><%= actor.name %></li>
+  <% end %>
+</ul>
+
+<h2>Reviews</h2>
+<ul>
+  <% @movie.reviews.each do |review| %>
+    <li>
+      <strong><%= review.user %>:</strong>
+      <%= review.stars %> stars
+      <p><%= review.review %></p>
+    </li>
+  <% end %>
+</ul>

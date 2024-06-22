@@ -1,0 +1,26 @@
+<h1>Movies</h1>
+<%= form_with url: movies_path, method: :get, local: true do %>
+  <%= label_tag :actor, "Search by Actor" %>
+  <%= text_field_tag :actor, params[:actor] %>
+  <%= submit_tag "Search" %>
+<% end %>
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Year</th>
+    <th>Director</th>
+    <th>Actors</th>
+    <th>Filming Location</th>
+    <th>Country</th>
+  </tr>
+  <% @movies.each do |movie| %>
+    <tr>
+      <td><%= link_to movie.title, movie_path(movie) %></td>
+      <td><%= movie.year %></td>
+      <td><%= movie.director %></td>
+      <td><%= movie.actors.pluck(:name).join(', ') %></td>
+      <td><%= movie.locations.pluck(:name).join(', ') %></td>
+      <td><%= movie.locations.pluck(:country).uniq.join(', ') %></td>
+    </tr>
+  <% end %>
+</table>
